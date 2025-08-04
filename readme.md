@@ -7,6 +7,7 @@ using from pylibCZIrw import czi as pyczi
 T = Time -> (0, 1) 1 timepoint -> (index 0 only)<br/>
 Z = Z-slice -> (0, 1) 1 depth slice -> (no 3D stack)<br/>
 C = Channel -> (0, 2) 2 channels -> (indexes 0 and 1)<br/>
+I = Illumination -> (0, 2)<br/>
 B = Block -> (0, 1) 1 pyramid -> resolution block (level 0 only)<br/>
 X = Width -> (0, 21718) -> Image width: 21718 pixels<br/>
 Y = Height -> (0, 1440) -> Image height: 1 440 pixels<br/>

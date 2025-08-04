@@ -115,9 +115,45 @@ def get_img_roi_scenes():
     fn = [fn_stacks, fn_scenes, fn_mouse]
     with pyczi.open_czi(fn[1]) as czidoc:
         print(czidoc.total_bounding_box)
-        c0_s0 = czidoc.read(plane={'C': 0}, scene=0)
-        c0_s0 = czidoc.read(plane={'C': 0}, scene=0)
-        c0_s0 = czidoc.read(plane={'C': 0}, scene=0)
+        print(czidoc.scenes_bounding_rectangle)
+        if len(czidoc.scenes_bounding_rectangle.keys()) > 0:
+            c0_s0 = czidoc.read(plane={'C': 0}, scene=0)
+            c1_s0 = czidoc.read(plane={'C': 1}, scene=0)
+            c0_s1 = czidoc.read(plane={'C': 0}, scene=1)
+            c1_s1 = czidoc.read(plane={'C': 1}, scene=1)
+        else:
+            print('no scenes')
+            return
+    fig, ax = plt.subplots(2,2, figsize=(16, 16))
+    ax[0,0].imshow(c0_s0[...,0], cmap=cm.inferno, vmin=100, vmax=4000)
+    ax[0,0].set_title('scene:0, channel=0')
+
+    ax[0,1].imshow(c1_s0[...,0], cmap=cm.Greens_r, vmin=100, vmax=4000)
+    ax[0,1].set_title('scene:0, channel=1')
+    
+    ax[1,0].imshow(c0_s1[...,0], cmap=cm.inferno, vmin=100, vmax=4000)
+    ax[1,0].set_title('scene:0, channel=0')
+    
+    ax[1,1].imshow(c1_s1[...,0], cmap=cm.Greens_r, vmin=100, vmax=4000)
+    ax[1,1].set_title('scene:1, channel=1')
+    plt.show()
+
+def get_img_roi_NO_scenes():
+    fn = [fn_stacks, fn_scenes, fn_mouse]
+    with pyczi.open_czi(fn[2]) as czidoc:
+        print(czidoc.total_bounding_box)
+        print(czidoc.scenes_bounding_rectangle)
+        c0 = czidoc.read(plane={'C': 0})
+        c1 = czidoc.read(plane={'C': 1})
+        c2 = czidoc.read(plane={'C': 2})
+    fig, ax = plt.subplots(2,2, figsize=(16, 16))
+    ax[0,0].imshow(c0[...,0], cmap=cm.inferno, vmin=100, vmax=4000)
+    ax[0,1].imshow(c1[...,0], cmap=cm.Greens_r, vmin=100, vmax=4000)
+    ax[1,0].imshow(c2[...,0], cmap=cm.Greens_r, vmin=100, vmax=4000)
+    ax[0,0].set_title('scene:0, channel=0')
+    ax[0,1].set_title('scene:0, channel=1')
+    ax[1,0].set_title('scene:0, channel=2')
+    plt.show()
 
 # read_czi_file_xml()
 # read_czi_file_json()
@@ -126,4 +162,5 @@ def get_img_roi_scenes():
 # get_image()
 # get_img_roi()
 get_img_roi_scenes()
+# get_img_roi_NO_scenes()
 
