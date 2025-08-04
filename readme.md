@@ -2,7 +2,9 @@
 
 using from pylibCZIrw import czi as pyczi
 not Czifile
-overall:
+
+# overall:
+
 S = 1 → 1 scene
 T = 10 → 10 timepoints
 C = 3 → 3 channels
