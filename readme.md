@@ -4,19 +4,17 @@ using from pylibCZIrw import czi as pyczi
 
 ## SCHEMA when using pylibCZIrw:
 
-#### Key Name Range Description
+#### T = Time -> (0, 1) 1 timepoint -> (index 0 only)
 
-#### T Time (0, 1) 1 timepoint (index 0 only)
+#### Z = Z-slice -> (0, 1) 1 depth slice -> (no 3D stack)
 
-#### Z Z-slice (0, 1) 1 depth slice (no 3D stack)
+#### C = Channel -> (0, 2) 2 channels -> (indexes 0 and 1)
 
-#### C Channel (0, 2) 2 channels (indexes 0 and 1)
+#### B = Block -> (0, 1) 1 pyramid -> resolution block (level 0 only)
 
-#### B Block (0, 1) 1 pyramid resolution block (level 0 only)
+#### X = Width -> (0, 21718) -> Image width: 21718 pixels
 
-#### X Width (0, 21718) Image width: 21718 pixels
-
-#### Y Height (0, 1440) Image height: 1440 pixels
+#### Y = Height -> (0, 1440) -> Image height: 1 440 pixels
 
 ## SCHEMA when using Czifile:
 
