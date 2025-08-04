@@ -3,11 +3,12 @@ import os
 import itertools as it
 import cv2
 import numpy as np
-from pylibCZIrw import czi as pyczi
+from  import czi as pyczi
 from skimage import data, io
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import imageio
+import datetime, time
 
 def write_czi():
     data = data.kidney()
@@ -70,7 +71,7 @@ def get_write_imgs_z_stack():
 
 def get_gif_img():
     fn = os.path.join(os.getcwd(), "data")
-    fn = os.path.join(fn, "newCZI_z=16_ch=3.czi")
+    # fn = os.path.join(fn, "newCZI_z=16_ch=3.czi")
     img_folder = 'output'
     files = [f for f in os.listdir(img_folder) if f.lower().endswith('.png')]
     frames=[]
@@ -84,5 +85,30 @@ def get_gif_img():
 # write_czi()
 # show_img_z_stack()
 # get_write_imgs_z_stack()
-get_gif_img()
+# get_gif_img()
 
+def read_gen_gif():
+    fn = os.path.join(os.getcwd(), "data")
+    fn = os.path.join(fn, "newCZI_z=16_ch=3.czi") #### input filename
+    output_dir = "new_output2"
+    try:
+        os.mkdir(os.path.join(os.getcwd(), output_dir))
+    except:
+        pass # output_dir exists
+    with pyczi.open_czi(fn) as czidoc:
+        print(czidoc.total_bounding_box)
+        z_num =czidoc.total_bounding_box['Z'][1]
+        for i in range(z_num):
+            img = czidoc.read(plane={'Z': i, 'C': 1})
+            plt.imshow(img, cmap=cm.inferno, vmin=100, vmax=4000)
+            plt.savefig(f'{output_dir}/img{i}.png')
+
+        files = [f for f in os.listdir(output_dir) if f.lower().endswith('.png')]
+        frames=[]
+        for file in files:
+            img = cv2.imread(os.path.join(output_dir,file))
+            img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+            frames.append(img_rgb)
+        imageio.mimsave(f"{output_dir}/output.gif", frames, duration=1, loop=0)
+
+read_gen_gif()
