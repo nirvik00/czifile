@@ -17,7 +17,7 @@ result = subprocess.run(
 )
 print(result.stdout)
 
-x = input('commit message')
+x = input('commit message: _> ')
 result = subprocess.run(
     ['git', 'commit', '-m', str(x)],
     cwd= os.getcwd(), 

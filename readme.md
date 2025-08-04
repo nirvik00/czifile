@@ -1,18 +1,23 @@
-### tests for learning czi file data schema
+# tests for learning czi file data schema
 
 using from pylibCZIrw import czi as pyczi
 not Czifile
 
-# overall:
+## overall:
 
-S = 1 → 1 scene
-T = 10 → 10 timepoints
-C = 3 → 3 channels
-Z = 15 → 15 slices per volume
-Y = 512 → height
-X = 512 → width
+#### S = 1 → 1 scene
 
-### data storage
+#### T = 10 → 10 timepoints
+
+#### C = 3 → 3 channels
+
+#### Z = 15 → 15 slices per volume
+
+#### Y = 512 → height
+
+#### X = 512 → width
+
+## data storage
 
 mydrive > code > biology
 <br/>
