@@ -4,10 +4,7 @@ import matplotlib.pyplot as plt
 from dotenv import load_dotenv
 load_dotenv()
 
-
-
 ##
-
 from pylibCZIrw import czi as pyczi
 import json
 from matplotlib import pyplot as plt
@@ -114,13 +111,19 @@ def get_img_roi():
     ax[1].set_title("ch1")
     plt.show()
 
-def get_img_roi():
-    
+def get_img_roi_scenes():
+    fn = [fn_stacks, fn_scenes, fn_mouse]
+    with pyczi.open_czi(fn[1]) as czidoc:
+        print(czidoc.total_bounding_box)
+        c0_s0 = czidoc.read(plane={'C': 0}, scene=0)
+        c0_s0 = czidoc.read(plane={'C': 0}, scene=0)
+        c0_s0 = czidoc.read(plane={'C': 0}, scene=0)
 
 # read_czi_file_xml()
 # read_czi_file_json()
 # get_img_dims()
 # get_channel_pixel_types()
 # get_image()
-get_img_roi()
+# get_img_roi()
+get_img_roi_scenes()
 
