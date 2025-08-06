@@ -41,6 +41,8 @@ urllib3 = "==2.5.0"
 validators = "==0.35.0"
 xmltodict = "==0.14.2"
 fastapi = {extras = ["standard"], version = "*"}
+jupyterlab = "*"
+ipykernel = "*"
 
 [dev-packages]
 
