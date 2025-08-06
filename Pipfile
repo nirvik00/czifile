@@ -43,6 +43,7 @@ xmltodict = "==0.14.2"
 fastapi = {extras = ["standard"], version = "*"}
 jupyterlab = "*"
 ipykernel = "*"
+pathlib = "*"
 
 [dev-packages]
 
